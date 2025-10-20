@@ -92,6 +92,12 @@ file(GLOB_RECURSE MSDFGEN_CORE_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "cor
 file(GLOB_RECURSE MSDFGEN_EXT_HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "ext/*.h" "ext/*.hpp")
 file(GLOB_RECURSE MSDFGEN_EXT_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "ext/*.cpp" "lib/*.cpp")
 
+# Installation preparation
+if(MSDFGEN_INSTALL)
+    include(GNUInstallDirs)
+    include(CMakePackageConfigHelpers)
+endif()
+
 # Core library
 add_library(msdfgen-core "${CMAKE_CURRENT_SOURCE_DIR}/msdfgen.h" ${MSDFGEN_CORE_HEADERS} ${MSDFGEN_CORE_SOURCES})
 add_library(msdfgen::msdfgen-core ALIAS msdfgen-core)
@@ -223,8 +229,6 @@ set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER meta)
 
 # Installation
 if(MSDFGEN_INSTALL)
-    include(GNUInstallDirs)
-    include(CMakePackageConfigHelpers)
     set(MSDFGEN_CONFIG_PATH "lib/cmake/msdfgen")
 
     # Generate msdfgen-config.h
