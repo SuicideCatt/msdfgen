@@ -66,6 +66,11 @@ if(MSDFGEN_USE_VCPKG)
     endif()
 endif()
 
+if(MSDFGEN_INSTALL)
+    include(GNUInstallDirs)
+    include(CMakePackageConfigHelpers)
+endif()
+
 # Version is specified in vcpkg.json
 project(msdfgen VERSION ${MSDFGEN_VERSION} LANGUAGES CXX)
 

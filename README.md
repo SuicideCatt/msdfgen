@@ -184,9 +184,13 @@ I would suggest precomputing `unitRange` as a uniform variable instead of `pxRan
 ```glsl
 uniform float pxRange; // set to distance field's pixel range
 
+vec2 sqr(vec2 x) { return x*x; } // squares vector components
+
 float screenPxRange() {
     vec2 unitRange = vec2(pxRange)/vec2(textureSize(msdf, 0));
-    vec2 screenTexSize = vec2(1.0)/fwidth(texCoord);
+    // If inversesqrt is not available, use vec2(1.0)/sqrt
+    vec2 screenTexSize = inversesqrt(sqr(dFdx(texCoord))+sqr(dFdy(texCoord)));
+    // Can also be approximated as screenTexSize = vec2(1.0)/fwidth(texCoord);
     return max(0.5*dot(unitRange, screenTexSize), 1.0);
 }
 ```

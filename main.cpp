@@ -361,7 +361,7 @@ static const char *writeOutput(const BitmapConstSection<float, N> &bitmap, const
 
 static const char *const versionText =
     "MSDFgen v" MSDFGEN_VERSION_STRING TITLE_SUFFIX "\n"
-    "(c) 2016 - " STRINGIZE(MSDFGEN_COPYRIGHT_YEAR) " Viktor Chlumsky";
+    "(c) 2014 - " STRINGIZE(MSDFGEN_COPYRIGHT_YEAR) " Viktor Chlumsky";
 
 static const char *const helpText =
     "\n"
